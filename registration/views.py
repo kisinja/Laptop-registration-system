@@ -6,7 +6,7 @@ from .serializers import SchoolSerializer, LaptopSerializer, LaptopRegistrationS
 
 
 class SchoolViewSet(viewsets.ModelViewSet):
-    queryset = School.objects.all()
+    queryset = School.objects.all() 
     serializer_class = SchoolSerializer
     
 class StudentViewSet(viewsets.ModelViewSet):

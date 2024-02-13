@@ -1,14 +1,6 @@
 from django.db import models
 
 # Create your models here.
-
-class School(models.Model):
-    name = models.CharField(max_length=100) 
-    address = models.CharField(max_length=200)
-    contact_info = models.CharField(max_length=100)
-    
-    def __str__(self):
-        return self.name 
     
 class Student(models.Model):
     name = models.CharField(max_length = 100)
@@ -29,29 +21,19 @@ class Laptop(models.Model):
     def __str__(self):
         return f"{self.make} {self.model} ({self.serial_number})"
     
-class LaptopRegistration(models.Model):
-    laptop = models.ForeignKey(Laptop, on_delete = models.CASCADE)
-    student = models.ForeignKey(Student, on_delete = models.CASCADE)
-    registration_date = models.DateField(auto_now_add = True)
+class LaptopMovement(models.Model):
     
-    STATUS_CHOICES = [
-        ('active', 'Active'), 
-        ('stolen', 'Stolen'),
-        ('recovered', 'Recovered'), 
-    ] 
+    MOVEMENT_CHOICES = [
+        ('Check Out', 'Check Out'),
+        ('Check In', 'Check In'), 
+    ]
     
-    status = models.CharField(max_length = 20, choices = STATUS_CHOICES, default = 'active')
+    laptop = models.ForeignKey(Laptop, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE) 
+    date = models.DateField(auto_now_add = True)
+    movement_type = models.CharField(max_length = 20, choices = MOVEMENT_CHOICES)
     
-class TheftReport(models.Model):
-    laptop = models.ForeignKey(Laptop, on_delete = models.CASCADE)
-    report_date = models.DateField(auto_now_add = True)
-    details = models.TextField()
-    
-    STATUS_CHOICES = [
-        ('unresolved', 'Unresolved'), 
-        ('resolved', 'Resolved'),
-    ] 
-    
-    status = models.CharField(max_length = 20, choices = STATUS_CHOICES)
+    def __str__(self):
+        return f"{self.laptop} {self.movement_type} by {self.student} on {self.date}"
     
     
