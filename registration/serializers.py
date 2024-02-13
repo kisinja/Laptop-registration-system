@@ -1,14 +1,6 @@
 from rest_framework import serializers
-from .models import School, Student, Laptop, LaptopRegistration, TheftReport
+from .models import Student, Laptop, LaptopMovement
 
-
-# serializers are used to convert complex data types, such as Django model instances, into Python data types that can be easily rendered into JSON, XML, or other content types
-
-class SchoolSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = School
-        fields = '__all__'
-        
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
@@ -19,12 +11,7 @@ class LaptopSerializer(serializers.ModelSerializer):
         model = Laptop
         fields = '__all__'
         
-class LaptopRegistrationSerializer(serializers.ModelSerializer):
+class LaptopMovementSerializer(serializers.ModelSerializer):
     class Meta:
-        model = LaptopRegistration
-        fields = '__all__'
-        
-class TheftReportSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = TheftReport
+        model = LaptopMovement
         fields = '__all__'

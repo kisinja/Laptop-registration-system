@@ -1,10 +1,8 @@
 from django.contrib import admin
-from .models import School, Student, Laptop, LaptopRegistration, TheftReport
+from .models import Student, Laptop,LaptopMovement
 
 # Register your models here.
 
-admin.site.register(School)
 admin.site.register(Student)
 admin.site.register(Laptop)
-admin.site.register(LaptopRegistration)
-admin.site.register(TheftReport)  
+admin.site.register(LaptopMovement)
