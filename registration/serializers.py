@@ -1,5 +1,7 @@
 from rest_framework import serializers
-from .models import Student, Laptop, LaptopMovement
+
+from .models import Laptop, LaptopMovement, Student
+
 
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:

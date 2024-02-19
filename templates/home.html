@@ -1,1 +1,35 @@
 {% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+      <div class="card m-2" style="width: 16rem; height: 180px;">
+       
+        <div class="card-body">
+          <h5 class="card-title">Students</h5>
+          <hr/>
+          <p class="card-text">Students Count: {{students_count}}</p>
+          <a href="{% url 'students' %}" class="btn btn-info">See List</a>
+        </div>
+      </div>
+
+      <div class="card m-2" style="width: 16rem; height: 180px;">
+       
+        <div class="card-body">
+          <h5 class="card-title">Laptops</h5>
+          <hr/>
+          <p class="card-text">Count: {{laptops_count}}</p>
+          <a href="{% url 'laptops' %}" class="btn btn-info">See List</a>
+        </div>
+      </div>
+      
+      <div class="card m-2" style="width: 16rem; height: 180px;">
+        <div class="card-body">
+          <h5 class="card-title">Checkins Today</h5>
+          <hr/>
+          <p class="card-text">Checkins Count: {{checkins_today}}</p>
+          <a href="{% url 'laptop-movements' %}" class="btn btn-info">See Report</a>
+        </div>
+      </div>
+  </div>
+
+{% endblock %}

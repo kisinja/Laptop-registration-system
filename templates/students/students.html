@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col">
+        <h3>Students</h3>
+    </div>
+    <div class="col">
+        <a class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#newLaptopModal">New student</a>
+    </div>
+    <div class="col">
+      <form method="POST">
+        {% csrf_token %}
+        <div class="input-group mb-2">
+          <div class="row">
+            <div class="col">
+              <input type="text" class="form-control" name="search_text" id="search_text" placeholder="Name ...">
+            </div>
+            <div class="col">
+              <button class="btn btn-success btn-sm">Search</button>
+            </div>
+          </div>
+          
+        </div>
+        
+      </form>
+    </div>
+</div>
+
+<hr/>
+      <div class="table-responsive small">
+        <table class="table table-sm">
+          <thead class="">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Reg. Number</th>
+              <th scope="col">Course</th>
+              <th scope="col">Phone Number</th>
+              <th scope="col">Email</th>
+              <th scope="col">ID Number</th>
+              <th scope="col" colspan="2"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for student in page_obj %}
+            <tr>
+              <td>{{student.id}}</td>
+              <td>{{student.name}}</td>
+              <td>{{student.registration_number}}</td>
+              <td>{{student.course}}</td>
+              <td>{{student.phone_number}}</td>
+              <td>{{student.email}}</td>
+              <td>{{student.id_number}}</td>
+              
+              <td><a class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#editStudentModal{{ student.id }}">
+                <i class="bi bi-pencil-square"></i>
+              </a>
+              </td>
+              
+              <td><a href="#" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteStudentModal{{ stock.id }}">
+                <i class="bi bi-trash"></i>
+              </a></td>
+            
+            </tr>
+           
+        
+            {% endfor %}
+
+          </tbody>
+        </table>
+        <div>
+          <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-end">
+              {% if page_obj.has_previous %}   
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+              {% endif %}
+              <a class="page-link" href="#">{{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a>
+              {% if page_obj.has_next %}    
+              <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+              {% endif %}   
+            </ul>
+          </nav>
+        </div>
+      </div>
+{% endblock content %}
